@@ -17,14 +17,15 @@ public class Player {
 
     public int xCoord;
     public int yCoord;
-
+    
     public int moveCounter;
-
+    public int speed; // Added
     public String direction;//is your first name one?
 
     public Player(Handler handler){
         this.handler = handler;
         xCoord = 0;
+        speed = 0; //Added
         yCoord = 0;
         moveCounter = 0;
         direction= "Right";
@@ -37,7 +38,7 @@ public class Player {
         moveCounter++;
         if(moveCounter>=5) {
             checkCollisionAndMove();
-            moveCounter=0;
+            moveCounter = speed; //Added
         }
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP)){
             direction="Up";
@@ -47,7 +48,18 @@ public class Player {
             direction="Left";
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)){
             direction="Right";
+            
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)) { // Added N key for adding tail
+        	justAte = true;
+        	handler.getWorld().body.addLast(new Tail(xCoord, yCoord, handler));
+        	
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)) { //Added - key for slowing down
+        	speed -=1;
+        
+        }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS)) { //Added = "+" key for speeding up
+        	speed +=1;
         }
+        	
 
     }
 
@@ -119,8 +131,10 @@ public class Player {
 
     }
 
+
     public void Eat(){
         lenght++;
+        speed += 9;
         Tail tail= null;
         handler.getWorld().appleLocation[xCoord][yCoord]=false;
         handler.getWorld().appleOnBoard=false;
