@@ -251,7 +251,7 @@ public class Player {
     public void setJustAte(boolean justAte) {
         this.justAte = justAte;
     }
-    public void highScore (Graphics g) 
+    public void highScore (Graphics g) //add score to screen** 
     {   TheScore = Math.sqrt((2*score)+1);
     	g.setColor(Color.BLACK);
     	g.setFont(new Font ("Times New Roman", 1, 20));
