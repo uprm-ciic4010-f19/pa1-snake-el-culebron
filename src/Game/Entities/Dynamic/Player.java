@@ -15,13 +15,13 @@ public class Player {
     public boolean justAte;
     private Handler handler;
     
-    private int score;
-
+    private int score;		//varr score count 
+    public double TheScore;	// varr that is displayed on screen
     public int xCoord;
     public int yCoord;
 
     public int moveCounter;
-    public double TheScore;
+ 
 
     public String direction;//is your first name one?
 
