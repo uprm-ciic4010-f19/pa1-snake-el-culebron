@@ -14,11 +14,14 @@ public class Player {
     public int lenght;
     public boolean justAte;
     private Handler handler;
+    
+    private int score;
 
     public int xCoord;
     public int yCoord;
 
     public int moveCounter;
+    public double TheScore;
 
     public String direction;//is your first name one?
 
@@ -26,6 +29,8 @@ public class Player {
         this.handler = handler;
         xCoord = 0;
         yCoord = 0;
+        TheScore = 0;
+        score = 0;
         moveCounter = 0;
         direction= "Right";
         justAte = false;
@@ -90,6 +95,7 @@ public class Player {
 
         if(handler.getWorld().appleLocation[xCoord][yCoord]){
             Eat();
+            score++;
         }
 
         if(!handler.getWorld().body.isEmpty()) {
@@ -244,5 +250,11 @@ public class Player {
 
     public void setJustAte(boolean justAte) {
         this.justAte = justAte;
+    }
+    public void highScore (Graphics g) 
+    {   TheScore = Math.sqrt((2*score)+1);
+    	g.setColor(Color.BLACK);
+    	g.setFont(new Font ("Times New Roman", 1, 20));
+    	g.drawString("Score: "+String.valueOf(TheScore),15,775);
     }
 }
