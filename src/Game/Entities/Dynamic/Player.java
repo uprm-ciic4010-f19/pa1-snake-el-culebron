@@ -14,12 +14,16 @@ public class Player {
     public int lenght;
     public boolean justAte;
     private Handler handler;
-
+    
+    private int score;		//varr score count 
+    public double TheScore;	// varr that is displayed on screen
     public int xCoord;
     public int yCoord;
     
     public int moveCounter;
+
     public int speed; // Added
+
     public String direction;//is your first name one?
 
     public Player(Handler handler){
@@ -27,6 +31,8 @@ public class Player {
         xCoord = 0;
         speed = 0; //Added
         yCoord = 0;
+        TheScore = 0;
+        score = 0;
         moveCounter = 0;
         direction= "Right";
         justAte = false;
@@ -54,10 +60,10 @@ public class Player {
         	handler.getWorld().body.addLast(new Tail(xCoord, yCoord, handler));
         	
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_MINUS)) { //Added - key for slowing down
-        	speed -=1;
+        	speed -=2;
         
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS)) { //Added = "+" key for speeding up
-        	speed +=1;
+        	speed +=2;
         }
         	
 
@@ -102,6 +108,7 @@ public class Player {
 
         if(handler.getWorld().appleLocation[xCoord][yCoord]){
             Eat();
+            score++;
         }
 
         if(!handler.getWorld().body.isEmpty()) {
@@ -258,5 +265,11 @@ public class Player {
 
     public void setJustAte(boolean justAte) {
         this.justAte = justAte;
+    }
+    public void highScore (Graphics g) //add score to screen** 
+    {   TheScore = Math.sqrt((2*score)+1);
+    	g.setColor(Color.BLACK);
+    	g.setFont(new Font ("Times New Roman", 1, 20));
+    	g.drawString("Score: "+String.valueOf(TheScore),15,775);
     }
 }
