@@ -1,10 +1,15 @@
 package Game.Entities.Dynamic;
 
-import Main.Handler;
-
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.Random;
+
+import Game.GameStates.State;
+import Main.Handler;
+
+
 
 /**
  * Created by AlexVR on 7/2/2018.
@@ -64,6 +69,12 @@ public class Player {
         
         }if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_EQUALS)) { //Added = "+" key for speeding up
         	speed +=2;
+        
+        }
+        if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_ESCAPE)) {
+        	State.setState(handler.getGame().pauseState);
+        	
+        	
         }
         	
 
