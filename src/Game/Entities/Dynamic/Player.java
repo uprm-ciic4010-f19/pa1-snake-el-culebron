@@ -52,12 +52,17 @@ public class Player {
 			moveCounter = speed; //Added
 		}
 		if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_UP)){
+			if(direction !="Down")
 			direction="Up";
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_DOWN)){
+			if(direction!="Up")
 			direction="Down";
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_LEFT)){
+			if(direction!="Right")
 			direction="Left";
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_RIGHT)){
+			if(direction!="Left")
+			
 			direction="Right";
 
 		}if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_N)) { // Added N key for adding tail
@@ -76,6 +81,8 @@ public class Player {
 
 
 		}
+		
+		
 
 
 	}
