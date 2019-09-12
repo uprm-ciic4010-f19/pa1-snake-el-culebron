@@ -76,6 +76,7 @@ public class Player {
         switch (direction){
             case "Left":
                 if(xCoord==0){
+                	xCoord = handler.getWorld().GridWidthHeightPixelCount-1;
                     kill();
                 }else{
                     xCoord--;
@@ -83,6 +84,7 @@ public class Player {
                 break;
             case "Right":
                 if(xCoord==handler.getWorld().GridWidthHeightPixelCount-1){
+                	xCoord = 0;
                     kill();
                 }else{
                     xCoord++;
@@ -90,6 +92,7 @@ public class Player {
                 break;
             case "Up":
                 if(yCoord==0){
+                	yCoord = handler.getWorld().GridWidthHeightPixelCount-1;
                     kill();
                 }else{
                     yCoord--;
@@ -97,6 +100,7 @@ public class Player {
                 break;
             case "Down":
                 if(yCoord==handler.getWorld().GridWidthHeightPixelCount-1){
+                	yCoord = 0;
                     kill();
                 }else{
                     yCoord++;
