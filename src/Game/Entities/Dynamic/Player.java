@@ -333,6 +333,7 @@ public class Player {
 
 	public boolean isJustAte() {
 		return justAte;
+		
 	}
 
 	public void setJustAte(boolean justAte) {
