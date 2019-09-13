@@ -120,7 +120,13 @@ public class Player {
                 break;
         }
         handler.getWorld().playerLocation[xCoord][yCoord]=true;
+        for(int i=0; i<= handler.getWorld().body.size()-1; i++) {
+        	if(xCoord == handler.getWorld().body.get(i).x && yCoord == handler.getWorld().body.get(i).y) {
+        		
+                State.setState(handler.getGame().gameoverState);
 
+        	}
+        }
 
 		if(handler.getWorld().appleLocation[xCoord][yCoord]){
 			Eat();
