@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
+import Game.Entities.Static.Apple;
 import Game.GameStates.State;
 import Main.Handler;
 
@@ -24,10 +25,12 @@ public class Player {
 	public double TheScore;	// varr that is displayed on screen
 	public int xCoord;
 	public int yCoord;
+	
 
 	public int moveCounter;
 
 	public int speed; // Added
+	public int steps;
 
 	public String direction;//is your first name one?
 
@@ -42,11 +45,23 @@ public class Player {
 		direction= "Right";
 		justAte = false;
 		lenght= 1;
+		steps = 0;
 
+	}
+	public boolean getisGood() {
+		return Apple.isGood;
 	}
 
 	public void tick(){
 		moveCounter++;
+		steps ++;
+		if(steps >= 500) {
+			Apple.isGood = false;
+			if (steps >= 1000) {
+				Apple.isGood = true;
+				steps = 0;
+			}
+		}
 		if(moveCounter>=5) {
 			checkCollisionAndMove();
 			moveCounter = speed; //Added
@@ -147,11 +162,28 @@ public class Player {
 			for (int j = 0; j < handler.getWorld().GridWidthHeightPixelCount; j++) {
 				g.setColor(Color.GREEN);
 
-				if(playeLocation[i][j]||handler.getWorld().appleLocation[i][j]){
+				if(playeLocation[i][j]){
+					g.setColor(Color.GREEN);
 					g.fillRect((i*handler.getWorld().GridPixelsize),
 							(j*handler.getWorld().GridPixelsize),
 							handler.getWorld().GridPixelsize,
 							handler.getWorld().GridPixelsize);
+				}
+				else if (handler.getWorld().appleLocation[i][j]){
+					if( Apple.isGood == false) {
+					g.setColor(Color.BLACK);
+					g.fillRect((i*handler.getWorld().GridPixelsize),
+							(j*handler.getWorld().GridPixelsize),
+							handler.getWorld().GridPixelsize,
+							handler.getWorld().GridPixelsize);
+					}else if (Apple.isGood == true) {
+						g.setColor(Color.RED);
+						g.fillRect((i*handler.getWorld().GridPixelsize),
+								(j*handler.getWorld().GridPixelsize),
+								handler.getWorld().GridPixelsize,
+								handler.getWorld().GridPixelsize);
+					}
+
 				}
 
 			}
